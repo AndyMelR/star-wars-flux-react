@@ -21,9 +21,9 @@ const CharacterCard = ({ item, type }) => {
           Hair Color: {item.result.properties.hair_color} <br />
           Eye Color: {item.result.properties.eye_color} <br />
         </Card.Text>
-        <Container className="card d-flex justify-content-between ps-0">
-          <Button variant="outline-primary">Learn More!</Button>
-          <Button variant="outline-warning">
+        <Container className="d-flex justify-content-between ps-0">
+          <Button variant="outline-primary" onClick={() => navigate(`details/${item.result.uid}`)}>Learn More!</Button>
+          <Button  id="favorite" variant="outline-warning" onClick={()=>{actions.setFavorites(item.result.properties.name)}}>
             <FaRegHeart />
           </Button>
         </Container>

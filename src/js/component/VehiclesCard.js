@@ -5,24 +5,30 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import {FaRegHeart} from 'react-icons/fa';
 
-const VehiclesCard = () => {
+const VehiclesCard = ({item, type}) => {
   const { store, actions } = useContext(Context);
 
+  const imageSrc = type === 'vehicles'
+
+  ? 'https://starwars-visualguide.com/assets/img/placeholder.jpg'
+  : `https://starwars-visualguide.com/assets/img/vehicles/${item.result.uid}.jpg`;
   
   
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="https://starwars-visualguide.com/assets/img/starships/10.jpg" />
+    <Card style={{ width: '18rem' }} id = "idVehicle">
+      <Card.Img variant="top" src={imageSrc} />
       <Card.Body>
-        <Card.Title className="text-start">Model YT-1300 light freighter</Card.Title>
+        <Card.Title className="text-start">{item.result.properties.name}</Card.Title>
         <Card.Text className="text-start">
-          Class:  Light Freighter<br></br>
-          Speed :  1,050km/h<br></br>
-          Passengers: 6<br></br>
+          Class: {item.result.properties.class}<br></br>
+          Speed :  {item.result.properties.speed}<br></br>
+          Passengers: {item.result.properties.passengers}<br></br>
         </Card.Text>
-        <Container className="d-flex justify-content-between ps-0" >
-            <Button variant="outline-primary">Learn More!</Button>
-            <Button id="favorite" type="button" className="btn btn-outline-warning"><FaRegHeart/></Button>
+        <Container className="d-flex justify-content-between ps-0">
+          <Button variant="outline-primary" onClick={() => navigate(`vehicle_details/${item.result.uid}`)}>Learn More!</Button>
+          <Button  id="favorite" variant="outline-warning" onClick={()=>{actions.setFavorites(item.result.properties.name)}}>
+            <FaRegHeart />
+          </Button>
         </Container>
       </Card.Body>
     </Card>
