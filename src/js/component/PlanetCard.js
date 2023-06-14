@@ -1,29 +1,22 @@
-import React, { Component } from "react";
-import { Container } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import {FaRegHeart} from 'react-icons/fa';
+import React from 'react';
+import { Card, Container } from 'react-bootstrap';
 
-const PlanetCard = () => {
+const PlanetCard = ({ item, type }) => {
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="https://starwars-visualguide.com/assets/img/planets/21.jpg" />
+    <Card style={{ width: '18rem'}} id="idPlanet">
+      <Card.Img variant="top" src={`https://starwars-visualguide.com/assets/img/${type}/${item.result.uid}.jpg`} />
       <Card.Body>
-        <Card.Title className="text-start">Leia</Card.Title>
-        <Card.Text className="text-start">
-          Population: 22,000,000,000 <br></br>
-          Terrain : Cityscape <br></br>
+        <Card.Title className="card text-start">{item.name}</Card.Title>
+        <Card.Text className="card text-start">
+          Climate: {item.climate} <br />
+          Population: {item.population} <br />
+          Diameter: {item.diameter} <br />
+          Gravity: {item.gravity} <br />
         </Card.Text>
-        <Container className="d-flex justify-content-between ps-0" >
-            <Button variant="outline-primary">Learn More!</Button>
-            <Button variant="outline-warning"><FaRegHeart/></Button>
-        </Container>
-       
-    
-        
+        <Container className="card d-flex justify-content-between ps-0"></Container>
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default PlanetCard;

@@ -1,92 +1,71 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-	  store: {
-		characters: [],
-		planets: [],
-		vehicles: [],
-		favorites: []
-	  },
-  
-	  actions: {
-		getAllCharacters: async () => {
-		  try {
-			const response = await fetch("https://www.swapi.tech/api/people");
-			const data = await response.json();
-  
-			const characters = data.results.map(character => ({
-			  uid: character.uid,
-			  name: character.name
-			}));
-			console.log(characters)
-  
-			setStore(prevState => ({
-			  ...prevState,
-			  characters: characters
-			}));
 
-			console.log (store.characters)
-		  } catch (error) {
-			console.error("Error fetching characters:", error);
-		  }
+		store: {
+			characters: [],
+			planets:[],
+			images: [],
+			favorites: [],
 		},
-  
-		getAllPlanets: async () => {
-		  try {
-			const response = await fetch("https://swapi.dev/api/planets/");
-			const data = await response.json();
-  
-			const planets = data.results.map(planet => ({
-			  uid: planet.url.split("/").slice(-2, -1)[0],
-			  name: planet.name
-			}));
-  
-			setStore(prevState => ({
-			  ...prevState,
-			  planets: planets
-			}));
-		  } catch (error) {
-			console.error("Error fetching planets:", error);
-		  }
-		},
-  
-		getAllVehicles: async () => {
-		  try {
-			const response = await fetch("https://swapi.dev/api/vehicles/");
-			const data = await response.json();
-  
-			const vehicles = data.results.map(vehicle => ({
-			  uid: vehicle.url.split("/").slice(-2, -1)[0],
-			  name: vehicle.name
-			}));
-  
-			setStore(prevState => ({
-			  ...prevState,
-			  vehicles: vehicles
-			}));
-		  } catch (error) {
-			console.error("Error fetching vehicles:", error);
-		  }
-		},
-  
-		setFavorites: name => {
-		  const store = getStore();
-		  setStore(prevState => ({
-			...prevState,
-			favorites: [...store.favorites, name]
-		  }));
-		},
-  
-		deleteFavorites: name => {
-		  const store = getStore();
-		  let newFavorites = store.favorites.filter(item => item !== name);
-		  setStore(prevState => ({
-			...prevState,
-			favorites: newFavorites
-		  }));
+
+		actions: {
+			
+			getAllCharacters: async() =>{
+				try {
+					const store = getStore(); 
+					const httpResponse = await fetch('https://www.swapi.tech/api/people/');
+					if (!httpResponse.ok) {
+					  return;
+					}
+					const newData = await httpResponse.json();
+					console.log("Estos son los datos:" , newData)
+					newData.results.map(async (person) => {
+					  const response = await fetch(person.url);
+		  
+					  const newCharacter = await response.json();
+					  setStore({
+						characters: [...store.characters, newCharacter],
+					  });
+					});
+				  } catch (error) {
+					console.log(error);
+				}
+        	},
+
+			getAllPlanets: async() =>{
+				try {
+					const store = getStore(); 
+					const httpResponse = await fetch('https://www.swapi.tech/api/planets/');
+					if (!httpResponse.ok) {
+					  return;
+					}
+					const newData = await httpResponse.json();
+					newData.results.map(async (person) => {
+					  const response = await fetch(person.url);
+		  
+					  const newPlanet = await response.json();
+					  setStore({
+						planets: [...store.planets, newPlanet],
+					  });
+					});
+				  } catch (error) {
+					console.log(error);
+				}
+				
+        	},
+
+			setFavorites: (name)=>{
+				const store = getStore(); 
+				setStore({favorites: [...store.favorites, name]})
+			},
+
+			deleteFavorites: (name) =>{
+				const store = getStore();
+				let newFavorites = store.favorites.filter((item)=>item !== name);
+				setStore({favorites:newFavorites})
+			},
 		}
-	  }
 	};
-  };
-  
-  export default getState;
-  
+};
+
+export default getState;
