@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Context} from "../store/appContext";
 import starwars from '../../img/starwars.png'
+import {FaTrash} from 'react-icons/fa';
 
 export const Navbar = () => {
 	const {store, actions } = useContext(Context);
@@ -28,7 +29,7 @@ export const Navbar = () => {
             								{store.favorites.length==0 ? <li className="ps-5">(empty)</li> : favorites.map((item)=>{
 												return <li>
 													<div className="dropdown-item" href="#">{item}<span className="material-symbols-outlined ps-4 text-center" onClick={()=>{actions.deleteFavorites(item)}}>
-														delete
+														<FaTrash />
 													</span>	</div>
 												</li>
 											})}

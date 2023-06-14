@@ -17,7 +17,7 @@ export const Home = () => {
 
   return (
     <div className="text-center mt-5 bg-black">
-      <div className="scroll-container">
+      <div className="scroll-container ms-4">
         <h1 className="text-white">Characters</h1>
         <div className="horizontal-scroll">
           <Row xs={1} md={2} lg={4} className="g-3">
