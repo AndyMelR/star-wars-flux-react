@@ -1,5 +1,6 @@
-import React, { Component, useContext, useState } from "react";
+import React, { Component, useContext} from "react";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router";
 import { Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -7,6 +8,7 @@ import {FaRegHeart} from 'react-icons/fa';
 
 const VehiclesCard = ({item, type}) => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
 
   const imageSrc = type === 'vehicles'
 

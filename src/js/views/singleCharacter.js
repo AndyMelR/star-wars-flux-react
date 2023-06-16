@@ -6,7 +6,7 @@ import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
 
-export const SingleCharacter = () => {
+const SingleCharacter = () => {
 	const params = useParams();
 	const {id} = params;
 	const { store } = useContext(Context);
@@ -14,9 +14,9 @@ export const SingleCharacter = () => {
 
 	useEffect(()=>{
 		if(store.characters == 0) return;
-		const actualInfo = store.characters.find((item)=>item.result.uid == id);
-		console.log(actualInfo);
-		setActualPage(actualInfo);
+		const actualType = store.characters.find((item)=>item.result.uid == id);
+		console.log(actualType);
+		setActualPage(actualType);
 	}, [params])
 
 	return (
@@ -62,3 +62,5 @@ export const SingleCharacter = () => {
 
 	);
 };
+
+export default SingleCharacter;

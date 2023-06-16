@@ -6,7 +6,7 @@ import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
 
-export const SinglePlanet = () => {
+const SinglePlanet = () => {
 	const params = useParams();
 	const {id} = params;
 	const { store } = useContext(Context);
@@ -14,9 +14,9 @@ export const SinglePlanet = () => {
 
 	useEffect(()=>{
 		if(store.planets == 0)return;
-		const actualInfo = store.planets.find((item)=>item.result.uid == id);
-		console.log(actualInfo);
-		setActualPage(actualInfo);
+		const actualType = store.planets.find((item)=>item.result.uid == id);
+		console.log(actualType);
+		setActualPage(actualType);
 	}, [params])
 
 	return (
@@ -61,3 +61,5 @@ export const SinglePlanet = () => {
 
 	);
 };
+
+export default SinglePlanet;
