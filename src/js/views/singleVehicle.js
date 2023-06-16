@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Context } from '../store/appContext';
 
@@ -21,10 +21,10 @@ const SingleVehicle = () => {
     <>
       <Container className="m-5">
         <Row>
-          <Col xs={12} md={6} className="text-center">
+          <Col xs={12} md={7} className="text-center">
             <Image id="singleImg" src={`https://starwars-visualguide.com/assets/img/vehicles/${actualPage?.result.uid}.jpg`} alt="..." />
           </Col>
-          <Col xs={12} md={6} className="text-start">
+          <Col xs={12} md={5} className="text-start">
             <h1 className="p-4 mb-3">{actualPage?.result.properties.name}</h1>
             <p className="p-2">{actualPage?.result.description}</p>
           </Col>
@@ -53,6 +53,9 @@ const SingleVehicle = () => {
             <p className="text-dark ps-1">{actualPage?.result.properties.cargo_capacity}</p>
           </Col>
         </Row>
+      </Container>
+      <Container className="fixed-bottom d-flex justify-content-end me-5 mb-5">
+        <Link to="/">Go Back</Link>
       </Container>
     </>
   );

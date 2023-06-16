@@ -16,7 +16,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="text-center mt-5 bg-black">
+    <div className="text-center mt-2 bg-black">
       <div className="scroll-container ms-4">
         <h1 className="text-white">Characters</h1>
         <div className="horizontal-scroll">

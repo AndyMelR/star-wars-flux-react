@@ -22,8 +22,8 @@ const VehiclesCard = ({item, type}) => {
       <Card.Body>
         <Card.Title className="text-start">{item.result.properties.name}</Card.Title>
         <Card.Text className="text-start">
-          Class: {item.result.properties.class}<br></br>
-          Speed :  {item.result.properties.speed}<br></br>
+          Class: {item.result.properties.vehicle_class}<br></br>
+          Speed :  {item.result.properties.max_atmosphering_speed}<br></br>
           Passengers: {item.result.properties.passengers}<br></br>
         </Card.Text>
         <Container className="d-flex justify-content-between ps-0">

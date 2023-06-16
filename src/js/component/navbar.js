@@ -3,17 +3,20 @@ import { useContext } from "react";
 import { Context} from "../store/appContext";
 import starwars from '../../img/starwars.png'
 import {FaTrash} from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	const {store, actions } = useContext(Context);
 	const {favorites} = store;
 	return (
 		<>
-			<nav className="navbar navbar-expand-lg bg-body-tertiary ">
+			<nav className="navbar navbar-expand-lg bg-body-tertiary mt-2 ">
   				<div className="container-fluid justify-content-between">
+				  <Link to="/">
 					<div>
 						<a className="navbar-brand ps-4" href="#"><img id="logo" src={starwars} width="150" height="80"></img></a>
 					</div>
+					</Link>
     				<div className="pe-5">
 						<div className="bg-primary rounded p-1">
 							<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
